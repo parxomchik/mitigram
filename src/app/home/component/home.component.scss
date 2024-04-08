@@ -1,0 +1,89 @@
+.home-wrapper {
+  padding: 20px;
+}
+
+.no-data {
+  text-align: center;
+  span {
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.desktop-container {
+  height: auto;
+  max-height: calc(100vh - 280px);
+  overflow: auto;
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.mobile-container {
+  display: none;
+  margin-bottom: 15px;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+
+.mobile-add-wrapper {
+  display: flex;
+  column-gap: 10px;
+}
+div.mobile-add-wrapper > button {
+  border-radius: 50%;
+  height: 60px;
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  z-index: 10;
+  font-size: 20px;
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
+}
+
+.card-subrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+div.card-subwrapper > span {
+  width: 100%;
+  display: block;
+  text-align: end;
+}
+table {
+  width: 100%;
+}
+
+.mat-column-setting {
+  text-align: end;
+  width: 100px;
+}
+
+.mat-column-setting button {
+  font-size: 20px;
+}
+
+.mat-cell {
+  text-align: center;
+  padding: 20px;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+}

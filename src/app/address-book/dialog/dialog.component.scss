@@ -1,0 +1,27 @@
+.tab-label {
+  margin-right: 5px;
+}
+
+.circle-counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-group-container {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.circle-counter {
+  background: #f96429;
+  border-radius: 20px;
+  color: white;
+  width: 20px;
+  height: 20px;
+
+  line-height: 1.5;
+}

@@ -1,0 +1,43 @@
+<div class="update-modal-content" *ngIf="modalVersion">
+  A new version of this app is available.
+  <a href="" (click)="updateVersion()">Update now</a>
+  <button
+    mat-icon-button
+    color="primary"
+    class="btn-close"
+    aria-label="close dialog"
+    mat-dialog-close
+    (click)="closeVersion()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div
+  *ngIf="isAndroid || isIOS"
+  class="install-hint-block"
+>
+  <button
+    mat-icon-button
+    class="btn-close"
+    aria-label="close dialog"
+    mat-dialog-close
+    (click)="closePwa()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <!-- Android -->
+  <div *ngIf="isAndroid" (click)="addToHomeScreen()">
+    Add this WEB app to home screen
+  </div>
+  <!-- iOS with Safari -->
+  <div *ngIf="isIOS">
+    To install this WEB app on your device, tap the "Menu" button
+    <img
+      src="https://res.cloudinary.com/rodrigokamada/image/upload/v1641089482/Blog/angular-pwa/safari_action_button_38x50.png"
+      class="ios-menu"
+    />
+    and then "Add to home screen" button
+    <i class="bi bi-plus-square"></i>
+  </div>
+</div>

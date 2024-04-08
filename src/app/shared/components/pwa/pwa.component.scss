@@ -1,0 +1,22 @@
+@import "../../../../assets/settings";
+
+.update-modal-content,
+.install-hint-block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-modal-content {
+  background-color: lightgray;
+}
+.install-hint-block {
+  background-color: $primary-color;
+}
+
+.ios-menu {
+  width: 16px;
+  height: 20px;
+  margin: 0 5px;
+}

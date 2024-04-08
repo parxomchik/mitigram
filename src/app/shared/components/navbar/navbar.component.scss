@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+ul {
+  display: flex;
+  li a {
+    text-decoration: none;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+.navbar-light {
+  color: #fff;
+}
+
+.bg-dark {
+  background-color: #131318;
+}
+
+.navbar {
+  height: 55px;
+}
+
+.ms-auto {
+  margin-left: auto;
+}
+
+.links {
+  font-size: 14px;
+  a {
+    margin-left: 10px;
+  }
+}

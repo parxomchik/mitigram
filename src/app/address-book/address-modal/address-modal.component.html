@@ -1,0 +1,68 @@
+<mat-dialog-content>
+  <section class="example-section">
+    <ng-container *ngFor="let group of mainArray">
+      <span
+        class="list-section"
+      >
+        <mat-checkbox
+          tabindex="-1"
+          class="example-margin"
+          [checked]="group.checked"
+          [indeterminate]="setIndeterminate(group)"
+          (change)="
+            setAllItemsGroup($event.checked, group.id);
+            checkIfAnyCheckboxChecked()
+          "
+        >
+          <span
+            matTooltip="{{ group.name.length > 50 ? group.name : null }}"
+            >{{
+              group.name.length > 50
+                ? group.name.substring(0, 50) + "..."
+                : group.name
+            }}
+          </span>
+        </mat-checkbox>
+
+        <mat-icon
+          [ngClass]="group.expandableClosed ? 'arrow-up' : 'arrow-down'"
+          class="cursor-pointer"
+          (click)="expend(group)"
+          >keyboard_arrow_down</mat-icon
+        >
+      </span>
+      <span *ngIf="group.expandableClosed" class="example-list-section">
+        <ul class="list-childs">
+          @for (child of group.childrens; track child) {
+          <li>
+            <mat-checkbox
+              [checked]="child.checked"
+              (change)="
+                setChild($event.checked, group.id, child.id);
+                checkIfAnyCheckboxChecked()
+              "
+            >
+              <span class="hide-on-mobile">
+                {{ child.name | displayUserName }} ({{ child.email }})
+              </span>
+            </mat-checkbox>
+            <span
+              class="hide-on-desktop"
+            >
+              {{ child.name | displayUserName }}
+              <mat-icon
+                #tooltip="matTooltip"
+                (click)="tooltip.toggle()"
+                class="toggle-icon"
+                matTooltipClass="custom-tooltip"
+                matTooltip="{{ child.email }}"
+                >info</mat-icon
+              >
+            </span>
+          </li>
+          }
+        </ul>
+      </span>
+    </ng-container>
+  </section>
+</mat-dialog-content>

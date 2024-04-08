@@ -1,0 +1,35 @@
+<mat-dialog-content class="dialog-content">
+  <mat-form-field class="example-form-field full-width" appearance="outline">
+    <mat-label class="custom-label"
+      >Emails
+      <mat-icon
+        class="custom-icon"
+        matTooltipClass="custom-tooltip"
+        [matTooltip]="hintInfo"
+        >help_outline</mat-icon
+      >
+    </mat-label>
+
+    <mat-chip-grid #chipGrid aria-label="Enter keywords">
+      @for (keyword of keywords; track keyword) {
+      <mat-chip-row (removed)="removeKeyword(keyword)">
+        {{ keyword }}
+        <button matChipRemove aria-label="'remove ' + keyword">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input
+      placeholder="New email..."
+      [matChipInputFor]="chipGrid"
+      (matChipInputTokenEnd)="add($event)"
+      (input)="validateEmail($event)"
+      #input
+    />
+  </mat-form-field>
+  <mat-error *ngIf="isInvalidEmail"
+    >Invalid email format now: {{ input.value }} <br />
+    Example: John.Smith&#64;meta.com</mat-error
+  >
+</mat-dialog-content>

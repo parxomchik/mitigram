@@ -1,0 +1,5 @@
+<app-home
+  (createInvite)="onCreateInvite($event)"
+  [addressBookList]="addressBook$ | async"
+  [selectInvitedList]="selectInvitedList$ | async"
+></app-home>

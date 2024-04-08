@@ -1,0 +1,51 @@
+<mat-tab-group
+  [selectedIndex]="selectedIndex"
+  (selectedIndexChange)="onTabChange($event)"
+  class="tab-group-container"
+>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="tab-label">Invite from Addressbook</span>
+      <ng-container *ngIf="addressBookData.length && currentSelectedIndex !== 0" class="circle-counter-container">
+        <span class="circle-counter">{{ addressBookData.length }}</span>
+      </ng-container>
+    </ng-template>
+    <dialog-data-example-dialog
+      (dataChange)="onAddressBookDataChange($event)"
+      #addressBookDialog
+    ></dialog-data-example-dialog>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span class="tab-label">Invite by Email</span>
+      <ng-container *ngIf="emailData.length && currentSelectedIndex !== 1" class="circle-counter-container">
+        <span class="circle-counter">{{ emailData.length }}</span>
+      </ng-container>
+    </ng-template>
+    <address-email-dialog
+      (dataChange)="onEmailDataChange($event)"
+      #emailDialog
+    ></address-email-dialog>
+  </mat-tab>
+</mat-tab-group>
+
+<div class="tab-group-container">
+  <button
+    style="background-color: white; border: 1px solid #c6c6c6; color: #5d5d5d"
+    type="button"
+    (click)="cancel()"
+    mat-flat-button
+    color="primary"
+  >
+    Cancel
+  </button>
+  <button
+    [disabled]="!emailData.length && !addressBookData.length"
+    type="submit"
+    (click)="confirm()"
+    mat-flat-button
+    color="primary"
+  >
+    Send invite
+  </button>
+</div>

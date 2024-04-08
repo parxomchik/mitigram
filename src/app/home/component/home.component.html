@@ -1,0 +1,110 @@
+<div class="home-wrapper">
+  <div class="mobile-add-wrapper">
+    <button mat-flat-button color="primary" (click)="openModal()">
+      <strong>+</strong>
+    </button>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Mia"
+      #input
+    />
+  </mat-form-field>
+
+  <!-- DESKTOP -->
+  <div
+    [hidden]="!dataSource.data.length"
+    class="desktop-container mat-elevation-z8"
+  >
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      matSortActive="groups"
+      matSortDirection="asc"
+    >
+      <ng-container matColumnDef="groups">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Groups</th>
+        <td mat-cell *matCellDef="let row">
+          <ng-container
+            *ngIf="row.groups && row.groups.length > 0; else noGroup"
+          >
+            {{ row.groups.join(", ") }}
+          </ng-container>
+
+          <ng-template #noGroup>- - -</ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Phone</th>
+        <td mat-cell *matCellDef="let row">{{ row.phone ?? "- - -" }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">
+          {{ (row.name | displayUserName) ?? "- - -" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let row">{{ row?.email ?? row }}</td>
+      </ng-container>
+
+      <!-- setting Column -->
+      <ng-container matColumnDef="setting">
+        <th mat-header-cell *matHeaderCellDef>
+          <button mat-flat-button color="primary" (click)="openModal()">
+            <strong>+</strong>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.fruit }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- MOBILE -->
+  <mat-card
+    appearance="outlined"
+    *ngFor="let counterparts of dataSource.filteredData; let isFirst = first"
+    class="mobile-container"
+  >
+    <mat-card-content>
+      <div class="card-subwrapper">
+        <mat-card-subtitle>Groups</mat-card-subtitle>
+        <span> {{ counterparts?.groups ?? "- - -" }}</span>
+      </div>
+
+      <div class="card-subwrapper">
+        <mat-card-subtitle>Name</mat-card-subtitle>
+        <span> {{ (counterparts.name | displayUserName) ?? "- - -" }}</span>
+      </div>
+
+      <div class="card-subwrapper">
+        <mat-card-subtitle>Email</mat-card-subtitle>
+        <span> {{ counterparts?.email ?? counterparts }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="no-data" *ngIf="!dataSource.filteredData.length">
+  <span
+    >No data matching the filter "{{ input.value }}"</span
+  >
+</div>

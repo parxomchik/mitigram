@@ -1,0 +1,17 @@
+.dialog-content {
+  padding: 10px 0px;
+}
+
+.example-form-field {
+  width: clamp(100px, 100%, 300%);
+}
+
+.custom-label {
+  display: flex;
+  align-items: center;
+}
+
+.custom-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
